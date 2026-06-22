@@ -155,18 +155,30 @@ Logistic Regression          0.545752
 > An accurracy of 73% or above was not achieved with any of the models evaluated. This could be because the target is extremely balanced and the dataset is small.
 
 ## Tune the models with the best hyperparameters for the minimum feature set to get best accuracy.
-Model	              Best Hyperparameters	     Minimum Feature Set		Accuracy	ROC-AUC
-SVM	                C=0.01, kernel='linear',   delivery_timeliness,   2	0.5000  0.3926
-                    gamma='scale'              product_availability
-                    			
-Random Forest	      max_depth=2,               All features           6	0.5455  0.6116 
-                    min_samples_leaf=4, 
-                    n_estimators=50	
 
-Logistic Regression	C=0.001,                   delivery_timeliness,   4	0.5000  0.6653
-                    penalty='l2',              product_availability,
-                    solver='liblinear'	       price_value_perception, 
-                                               courier_service_rating
+Since SVM had the most accuracy with the hyperparameter.
+With best hyperparameters: {'C': 0.01, 'gamma': 'scale', 'kernel': 'linear'}
+and minimum feature set ['delivery_timeliness', 'product_availability']
+Accuracy: 0.5
+ROC-AUC: 0.39256198347107435
 
-KNN	                n_neighbors=7,             All features            6 0.6818 0.7893
-                    weights='uniform'			
+Tuned Random Forest:
+with best hyperparameters: {'max_depth': 2, 'min_samples_leaf': 4, 'n_estimators': 50}
+and minimum feature set is all the features.
+Accuracy: 0.5454545454545454
+ROC-AUC: 0.6115702479338843
+
+Tune Logistic Regression:
+with best hyperparameters: {'C': 0.001, 'penalty': 'l2', 'solver': 'liblinear'}
+and minimum feature set is ['delivery_timeliness',
+                            'product_availability',
+                            'price_value_perception',
+                            'courier_service_rating'].
+Accuracy: 0.5
+ROC-AUC: 0.6652892561983471
+
+Tuned KNN:
+with best hyperparameters: {'n_neighbors': 7, 'weights': 'uniform'}
+and minimum feature set is all the features.
+Accuracy: 0.6818181818181818
+ROC-AUC: 0.7892561983471075
