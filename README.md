@@ -92,17 +92,6 @@ app_usability	            6	       2	     3	       4	      3	          4	    3.6
 price_value_perception	  2	       6	     2	       2	      5	          6	    3.833333
 order_accuracy	          5	       4	     6	       1	      6	          5	    4.500000
 
-## Hyperparameter tuning the models.
-              Model  Best_CV_Accuracy       
-Logistic Regression          0.545752
-      Random Forest          0.545752
-                KNN          0.533333
-                SVM          0.567320
-
-> After hyperparameter tuning, the best accuracy achieved was 0.567320 with SVM model. The most important feature for SVM was found to be 'product_availability' and the least important feature was 'order_accuracy'. 
-
-> An accurracy of 73% or above was not achieved with any of the models evaluated. This could be because the target is extremely balanced and the dataset is small.
-
 ## SHAP Feature Importance Analysis
 
 ### Most Important Feature by Model (SHAP Analysis):
@@ -153,3 +142,31 @@ SVM
 - Features:
   - delivery_timeliness
   - product_availability
+  
+## Hyperparameter tuning the models.
+              Model  Best_CV_Accuracy       
+Logistic Regression          0.545752
+      Random Forest          0.545752
+                KNN          0.533333
+                SVM          0.567320
+
+> After hyperparameter tuning, the best accuracy achieved was 0.567320 with SVM model. The most important feature for SVM was found to be 'product_availability' and the least important feature was 'order_accuracy'. 
+
+> An accurracy of 73% or above was not achieved with any of the models evaluated. This could be because the target is extremely balanced and the dataset is small.
+
+## Tune the models with the best hyperparameters for the minimum feature set to get best accuracy.
+Model	              Best Hyperparameters	     Minimum Feature Set		Accuracy	ROC-AUC
+SVM	                C=0.01, kernel='linear',   delivery_timeliness,   2	0.5000  0.3926
+                    gamma='scale'              product_availability
+                    			
+Random Forest	      max_depth=2,               All features           6	0.5455  0.6116 
+                    min_samples_leaf=4, 
+                    n_estimators=50	
+
+Logistic Regression	C=0.001,                   delivery_timeliness,   4	0.5000  0.6653
+                    penalty='l2',              product_availability,
+                    solver='liblinear'	       price_value_perception, 
+                                               courier_service_rating
+
+KNN	                n_neighbors=7,             All features            6 0.6818 0.7893
+                    weights='uniform'			
