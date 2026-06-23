@@ -2,19 +2,19 @@
 
 ## Problem Statement
 1] Predict if a customer is happy or not based on the answers they give to questions asked.
-   -> Reach 73% accuracy score or above.
-2] Find which features are more important when predicting a customer’s happiness.
-  -> Minimal set of features that increases predictability of the data.
-  -> Feature of least importance that can be removed.
+   <br>-> Reach 73% accuracy score or above.
+<br>2] Find which features are more important when predicting a customer’s happiness.
+  <br>-> Minimal set of features that increases predictability of the data.
+  <br>-> Feature of least importance that can be removed.
 
 ## Dataset
 Y (customer_happiness) = target attribute (Y) with values indicating 0 (unhappy) and 1 (happy) customers
-X1 (delivery_timeliness) = my order was delivered on time
-X2 (order_accuracy) = contents of my order was as I expected
-X3 (product_availability) = I ordered everything I wanted to order
-X4 (price_value_perception) = I paid a good price for my order
-X5 (courier_satisfaction) = I am satisfied with my courier
-X6 (app_usability) = the app makes ordering easy for me 
+<br>X1 (delivery_timeliness) = my order was delivered on time
+<br>X2 (order_accuracy) = contents of my order was as I expected
+<br>X3 (product_availability) = I ordered everything I wanted to order
+<br>X4 (price_value_perception) = I paid a good price for my order
+<br>X5 (courier_satisfaction) = I am satisfied with my courier
+<br>X6 (app_usability) = the app makes ordering easy for me 
 
 Attributes X1 to X6 indicate the responses for each question and have values from 1 to 5 where the smaller number indicates less and the higher number indicates more towards the answer.
 
@@ -28,34 +28,34 @@ We have features (delivery time lines, order accuracy, product availability, pri
 - Check for missing values in the dataset - no null values found.
 - Check for duplicates in the dataset - 16 duplicate records found.
 - Count of unique values for each attribute:
-    customer_happiness (y) : 54 records (unhappy),
+    <br>customer_happiness (y) : 54 records (unhappy),
                              56 records (happy)
-    delivery_timeliness (X1): 1 - 1 records, 
+    <br>delivery_timeliness (X1): 1 - 1 records, 
                               2 - 0 records, 
                               3 - 18 records, 
                               4 - 36 records, 
                               5 - 55 records
-    order_accuracy (X2): 1 - 23 records, 
+    <br>order_accuracy (X2): 1 - 23 records, 
                          2 - 30 records, 
                          3 - 37 records, 
                          4 - 15 records, 
                          5 - 5 records
-    product_availability (X3): 1 - 6 records, 
+    <br>product_availability (X3): 1 - 6 records, 
                                2 - 13 records, 
                                3 - 50 records, 
                                4 - 27 records, 
                                5 - 14 records
-    price_value_perception (X4): 1 - 2 records, 
+    <br>price_value_perception (X4): 1 - 2 records, 
                                  2 - 5 records, 
                                  3 - 35 records, 
                                  4 - 46 records,
                                  5 - 22 records 
-    courier_service_rating (X5): 1 - 7 records, 
+    <br>courier_service_rating (X5): 1 - 7 records, 
                                  2 - 16 records, 
                                  3 - 19 records, 
                                  4 - 41 records, 
                                  5 - 27 records
-    app_usability (X6): 1 - 1 records, 
+    <br>app_usability (X6): 1 - 1 records, 
                             2 - 1 records, 
                             3 - 20 records, 
                             4 - 40 records, 
@@ -68,11 +68,11 @@ We have features (delivery time lines, order accuracy, product availability, pri
 
 ## Models Evaluated
 1] Logistic Regression
-2] Random Forest
-3] XGBoost 
-4] K-Nearest Neighbors (KNN) 
-5] Support Vector Machine (SVM)
-6] Naive Bayes
+<br>2] Random Forest
+<br>3] XGBoost 
+<br>4] K-Nearest Neighbors (KNN) 
+<br>5] Support Vector Machine (SVM)
+<br>6] Naive Bayes
 
 MODEL COMPARISON SUMMARY
                      Accuracy   ROC_AUC
