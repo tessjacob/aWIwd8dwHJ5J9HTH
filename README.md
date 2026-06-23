@@ -38,7 +38,6 @@ We have features (delivery time lines, order accuracy, product availability, pri
 
 > Target attribute (Y) is balanced with almost equal number of records for both classes. All other attributes have values from 1 to 5 with varying distribution.
 
-
 > A stratified train-test split was used to preserve the original class distribution of happy and unhappy customers in both training and testing datasets. This reduces sampling bias and provides a more reliable estimate of model performance, particularly given the small dataset size (110 observations).
 
 ## Models Evaluated
@@ -56,6 +55,8 @@ Random Forest: Accuracy = 63.64%, ROC-AUC = 0.6198
 <br>Logistic Regression: Accuracy = 54.55%, ROC-AUC = 0.6446
 <br>Naive Bayes: Accuracy = 54.55%, ROC-AUC = 0.6364
 <br>XGBoost: Accuracy = 50.00%, ROC-AUC = 0.5620
+
+> Random Forest and KNN have most accuracy followed by SVM and Logistic Regression.
 
 ### Overall Feature Ranking Across Models
 **delivery_timeliness** was ranked as the **most** important feature overall, with an average rank of 2.50.
@@ -78,6 +79,9 @@ Random Forest: Accuracy = 63.64%, ROC-AUC = 0.6198
 <br>**Random Forest** identified **order_accuracy** as the least important feature (SHAP importance = 0.0307).
 <br>**KNN** identified **app_usability** as the least important feature (SHAP importance = 0.0294).
 <br>**SVM** identified **order_accuracy** as the least important feature (SHAP importance = 0.0000).
+
+> All models indicate that delivery_timeliness is most important.
+> Between the four models app_usability and order_accuracy are least important.
 
 ### Minimum Feature Set Achieving Maximum Accuracy
 Logistic Regression:
@@ -125,26 +129,28 @@ SVM achieved the highest cross-validation accuracy (56.73%).
 
 ## Tune the models with the best hyperparameters for the minimum feature set to get best accuracy.
 
-Since SVM had the most accuracy with the hyperparameter.
+### Tuned SVM.
 <br>With best hyperparameters: {'C': 0.01, 'gamma': 'scale', 'kernel': 'linear'}
 <br>and minimum feature set ['delivery_timeliness', 'product_availability']
  - Accuracy: 0.5
  - ROC-AUC: 0.39256198347107435
 
-Tuned Random Forest:
+### Tuned Random Forest:
 <br>with best hyperparameters: {'max_depth': 2, 'min_samples_leaf': 4, 'n_estimators': 50}
 <br>and minimum feature set is all the features.
  - Accuracy: 0.5454545454545454
  - ROC-AUC: 0.6115702479338843
 
-Tune Logistic Regression:
+### Tune Logistic Regression:
 <br>with best hyperparameters: {'C': 0.001, 'penalty': 'l2', 'solver': 'liblinear'}
 <br>and minimum feature set is ['delivery_timeliness', 'product_availability', 'price_value_perception', 'courier_service_rating'].
  - Accuracy: 0.5
  - ROC-AUC: 0.6652892561983471
 
-Tuned KNN:
+### Tuned KNN:
 <br>with best hyperparameters: {'n_neighbors': 7, 'weights': 'uniform'}
 <br>and minimum feature set is all the features.
  - Accuracy: 0.6818181818181818
  - ROC-AUC: 0.7892561983471075
+
+> After tuning the models with the hyperparameter and minimum feature set KNN can achive the accuracy of 68%.
