@@ -28,38 +28,13 @@ We have features (delivery time lines, order accuracy, product availability, pri
 - Check for missing values in the dataset - no null values found.
 - Check for duplicates in the dataset - 16 duplicate records found.
 - Count of unique values for each attribute:
-    <br>customer_happiness (y) : 54 records (unhappy),
-                             56 records (happy)
-    <br>delivery_timeliness (X1): 1 - 1 records, 
-                              2 - 0 records, 
-                              3 - 18 records, 
-                              4 - 36 records, 
-                              5 - 55 records
-    <br>order_accuracy (X2): 1 - 23 records, 
-                         2 - 30 records, 
-                         3 - 37 records, 
-                         4 - 15 records, 
-                         5 - 5 records
-    <br>product_availability (X3): 1 - 6 records, 
-                               2 - 13 records, 
-                               3 - 50 records, 
-                               4 - 27 records, 
-                               5 - 14 records
-    <br>price_value_perception (X4): 1 - 2 records, 
-                                 2 - 5 records, 
-                                 3 - 35 records, 
-                                 4 - 46 records,
-                                 5 - 22 records 
-    <br>courier_service_rating (X5): 1 - 7 records, 
-                                 2 - 16 records, 
-                                 3 - 19 records, 
-                                 4 - 41 records, 
-                                 5 - 27 records
-    <br>app_usability (X6): 1 - 1 records, 
-                            2 - 1 records, 
-                            3 - 20 records, 
-                            4 - 40 records, 
-                            5 - 48 records
+<br>customer_happiness (y) : 54 records (unhappy), 56 records (happy)
+<br>delivery_timeliness (X1): 1 (1 records), 2 (0 records), 3 (18 records), 4 (36 records), 5 (55 records)
+<br>order_accuracy (X2): 1 (23 records), 2 (30 records), 3 (37 records), 4 (15 records), 5 ( 5 records)
+<br>product_availability (X3): 1 (6 records), 2 (13 records), 3 (50 records), 4 (27 records), 5 (14 records)
+<br>price_value_perception (X4): 1 (2 records), 2 (5 records), 3 (35 records), 4 (46 records), 5 (22 records) 
+<br>courier_service_rating (X5): 1 (7 records), 2 (16 records), 3 (19 records), 4 (41 records), 5 (27 records)
+<br>app_usability (X6): 1 (1 records), 2 (1 records), 3 (20 records), 4 (40 records), 5 (48 records)
 
 > Target attribute (Y) is balanced with almost equal number of records for both classes. All other attributes have values from 1 to 5 with varying distribution.
 
@@ -74,23 +49,21 @@ We have features (delivery time lines, order accuracy, product availability, pri
 <br>5] Support Vector Machine (SVM)
 <br>6] Naive Bayes
 
-MODEL COMPARISON SUMMARY
-                     Accuracy   ROC_AUC
-Model                                  
-Logistic Regression  0.545455  0.644628
-Random Forest        0.636364  0.619835
-XGBoost              0.500000  0.561983
-KNN                  0.636364  0.652893
-SVM                  0.590909  0.652893
-Naive Bayes          0.545455  0.636364
+### Model Comparison Summary
+Random Forest: Accuracy = 63.64%, ROC-AUC = 0.6198
+<br>KNN: Accuracy = 63.64%, ROC-AUC = 0.6529
+<br>SVM: Accuracy = 59.09%, ROC-AUC = 0.6529
+<br>Logistic Regression: Accuracy = 54.55%, ROC-AUC = 0.6446
+<br>Naive Bayes: Accuracy = 54.55%, ROC-AUC = 0.6364
+<br>XGBoost: Accuracy = 50.00%, ROC-AUC = 0.5620
 
-Feature	                Rank_LR	Rank_RF	Rank_XGB	Rank_KNN	Rank_SVM	Rank_NB	Average_Rank
-delivery_timeliness	      1	       5	     1	       2	      4	          2	    2.500000
-courier_service_rating	  3	       3	     5	       3	      2	          1	    2.833333
-product_availability	    4	       1	     4	       5	      1	          3	    3.000000
-app_usability	            6	       2	     3	       4	      3	          4	    3.666667
-price_value_perception	  2	       6	     2	       2	      5	          6	    3.833333
-order_accuracy	          5	       4	     6	       1	      6	          5	    4.500000
+### Overall Feature Ranking Across Models
+delivery_timeliness was ranked as the most important feature overall, with an average rank of 2.50.
+<br>courier_service_rating was the second most important feature, with an average rank of 2.83.
+<br>product_availability ranked third overall, with an average rank of 3.00.
+<br>app_usability was ranked fourth, with an average rank of 3.67.
+<br>price_value_perception ranked fifth, with an average rank of 3.83.
+<br>order_accuracy was the least important feature overall, with an average rank of 4.50.
 
 ## SHAP Feature Importance Analysis
 
@@ -109,26 +82,16 @@ KNN                   app_usability            0.029359
 SVM                   order_accuracy           0.000025
 
 ### Minimum Feature Set Achieving Maximum Accuracy
-Logistic Regression
-- Accuracy: **59.09%**
+Logistic Regression:
+- Accuracy: 59.09%
 - Features:
   - delivery_timeliness
   - product_availability
   - price_value_perception
   - courier_service_rating
 
-Random Forest
-- Accuracy: **63.64%**
-- Features:
-  - delivery_timeliness
-  - product_availability
-  - price_value_perception
-  - courier_service_rating
-  - app_usability
-  - order_accuracy
-
-KNN
-- Accuracy: **63.64%**
+Random Forest:
+- Accuracy: 63.64%
 - Features:
   - delivery_timeliness
   - product_availability
@@ -137,8 +100,18 @@ KNN
   - app_usability
   - order_accuracy
 
-SVM
-- Accuracy: **59.09%**
+KNN:
+- Accuracy: 63.64%
+- Features:
+  - delivery_timeliness
+  - product_availability
+  - price_value_perception
+  - courier_service_rating
+  - app_usability
+  - order_accuracy
+
+SVM:
+- Accuracy: 59.09%
 - Features:
   - delivery_timeliness
   - product_availability
@@ -170,10 +143,7 @@ ROC-AUC: 0.6115702479338843
 
 Tune Logistic Regression:
 with best hyperparameters: {'C': 0.001, 'penalty': 'l2', 'solver': 'liblinear'}
-and minimum feature set is ['delivery_timeliness',
-                            'product_availability',
-                            'price_value_perception',
-                            'courier_service_rating'].
+and minimum feature set is ['delivery_timeliness', 'product_availability', 'price_value_perception', 'courier_service_rating'].
 Accuracy: 0.5
 ROC-AUC: 0.6652892561983471
 
