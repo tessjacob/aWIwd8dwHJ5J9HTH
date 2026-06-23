@@ -81,7 +81,7 @@ Random Forest: Accuracy = 63.64%, ROC-AUC = 0.6198
 <br>**SVM** identified **order_accuracy** as the least important feature (SHAP importance = 0.0000).
 
 > All models indicate that delivery_timeliness is most important.
-> Between the four models app_usability and order_accuracy are least important.
+<br>> Between the four models app_usability and order_accuracy are least important.
 
 ### Minimum Feature Set Achieving Maximum Accuracy
 Logistic Regression:
