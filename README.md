@@ -58,28 +58,26 @@ Random Forest: Accuracy = 63.64%, ROC-AUC = 0.6198
 <br>XGBoost: Accuracy = 50.00%, ROC-AUC = 0.5620
 
 ### Overall Feature Ranking Across Models
-delivery_timeliness was ranked as the most important feature overall, with an average rank of 2.50.
-<br>courier_service_rating was the second most important feature, with an average rank of 2.83.
-<br>product_availability ranked third overall, with an average rank of 3.00.
-<br>app_usability was ranked fourth, with an average rank of 3.67.
-<br>price_value_perception ranked fifth, with an average rank of 3.83.
-<br>order_accuracy was the least important feature overall, with an average rank of 4.50.
+**delivery_timeliness** was ranked as the **most** important feature overall, with an average rank of 2.50.
+<br>**courier_service_rating** was the **second** most important feature, with an average rank of 2.83.
+<br>**product_availability** ranked **third** overall, with an average rank of 3.00.
+<br>**app_usability** was ranked **fourth**, with an average rank of 3.67.
+<br>**price_value_perception** ranked **fifth**, with an average rank of 3.83.
+<br>**order_accuracy** was the **least** important feature overall, with an average rank of 4.50.
 
 ## SHAP Feature Importance Analysis
 
 ### Most Important Feature by Model (SHAP Analysis):
-Model                Most Important Feature  SHAP Importance 
-Logistic Regression  delivery_timeliness      0.390131
-Random Forest        delivery_timeliness      0.092140
-KNN                  delivery_timeliness      0.066770
-SVM                  delivery_timeliness      0.000099
+**Logistic Regression** identified **delivery_timeliness** as the most important feature (SHAP importance = 0.3901).
+<br>**Random Forest** identified **delivery_timeliness** as the most important feature (SHAP importance = 0.0921).
+<br>**KNN** identified **delivery_timeliness** as the most important feature (SHAP importance = 0.0668).
+<br>**SVM** identified **delivery_timeliness** as the most important feature (SHAP importance = 0.0001).
 
 ### Least Important Feature by Model (SHAP Analysis):
-Model                 Least Important Feature  SHAP Importance
-Logistic Regression   app_usability            0.001547
-Random Forest         order_accuracy           0.030677
-KNN                   app_usability            0.029359
-SVM                   order_accuracy           0.000025
+**Logistic Regression** identified **app_usability** as the least important feature (SHAP importance = 0.0015).
+<br>**Random Forest** identified **order_accuracy** as the least important feature (SHAP importance = 0.0307).
+<br>**KNN** identified **app_usability** as the least important feature (SHAP importance = 0.0294).
+<br>**SVM** identified **order_accuracy** as the least important feature (SHAP importance = 0.0000).
 
 ### Minimum Feature Set Achieving Maximum Accuracy
 Logistic Regression:
@@ -117,11 +115,9 @@ SVM:
   - product_availability
   
 ## Hyperparameter tuning the models.
-              Model  Best_CV_Accuracy       
-Logistic Regression          0.545752
-      Random Forest          0.545752
-                KNN          0.533333
-                SVM          0.567320
+SVM achieved the highest cross-validation accuracy (56.73%).
+<br>Logistic Regression and Random Forest performed similarly (54.58%).
+<br>KNN achieved the lowest cross-validation accuracy (53.33%).
 
 > After hyperparameter tuning, the best accuracy achieved was 0.567320 with SVM model. The most important feature for SVM was found to be 'product_availability' and the least important feature was 'order_accuracy'. 
 
@@ -130,25 +126,25 @@ Logistic Regression          0.545752
 ## Tune the models with the best hyperparameters for the minimum feature set to get best accuracy.
 
 Since SVM had the most accuracy with the hyperparameter.
-With best hyperparameters: {'C': 0.01, 'gamma': 'scale', 'kernel': 'linear'}
-and minimum feature set ['delivery_timeliness', 'product_availability']
-Accuracy: 0.5
-ROC-AUC: 0.39256198347107435
+<br>With best hyperparameters: {'C': 0.01, 'gamma': 'scale', 'kernel': 'linear'}
+<br>and minimum feature set ['delivery_timeliness', 'product_availability']
+ - Accuracy: 0.5
+ - ROC-AUC: 0.39256198347107435
 
 Tuned Random Forest:
-with best hyperparameters: {'max_depth': 2, 'min_samples_leaf': 4, 'n_estimators': 50}
-and minimum feature set is all the features.
-Accuracy: 0.5454545454545454
-ROC-AUC: 0.6115702479338843
+<br>with best hyperparameters: {'max_depth': 2, 'min_samples_leaf': 4, 'n_estimators': 50}
+<br>and minimum feature set is all the features.
+ - Accuracy: 0.5454545454545454
+ - ROC-AUC: 0.6115702479338843
 
 Tune Logistic Regression:
-with best hyperparameters: {'C': 0.001, 'penalty': 'l2', 'solver': 'liblinear'}
-and minimum feature set is ['delivery_timeliness', 'product_availability', 'price_value_perception', 'courier_service_rating'].
-Accuracy: 0.5
-ROC-AUC: 0.6652892561983471
+<br>with best hyperparameters: {'C': 0.001, 'penalty': 'l2', 'solver': 'liblinear'}
+<br>and minimum feature set is ['delivery_timeliness', 'product_availability', 'price_value_perception', 'courier_service_rating'].
+ - Accuracy: 0.5
+ - ROC-AUC: 0.6652892561983471
 
 Tuned KNN:
-with best hyperparameters: {'n_neighbors': 7, 'weights': 'uniform'}
-and minimum feature set is all the features.
-Accuracy: 0.6818181818181818
-ROC-AUC: 0.7892561983471075
+<br>with best hyperparameters: {'n_neighbors': 7, 'weights': 'uniform'}
+<br>and minimum feature set is all the features.
+ - Accuracy: 0.6818181818181818
+ - ROC-AUC: 0.7892561983471075
