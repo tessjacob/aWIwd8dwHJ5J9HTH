@@ -27,6 +27,7 @@ We have features (delivery time lines, order accuracy, product availability, pri
 - List all unique values for each attribute.
 - Check for missing values in the dataset - no null values found.
 - Check for duplicates in the dataset - 16 duplicate records found.
+<br>* Duplicate rows are not deleted.
 - Count of unique values for each attribute:
 <br>customer_happiness (y) : 54 records (unhappy), 56 records (happy)
 <br>delivery_timeliness (X1): 1 (1 records), 2 (0 records), 3 (18 records), 4 (36 records), 5 (55 records)
@@ -38,7 +39,7 @@ We have features (delivery time lines, order accuracy, product availability, pri
 
 > Target attribute (Y) is balanced with almost equal number of records for both classes. All other attributes have values from 1 to 5 with varying distribution.
 
-> A stratified train-test split was used to preserve the original class distribution of happy and unhappy customers in both training and testing datasets. This reduces sampling bias and provides a more reliable estimate of model performance, particularly given the small dataset size (110 observations).
+> A stratified train-test split was used to preserve the original class distribution of happy and unhappy customers in both training and testing datasets. This reduces sampling bias and provides a more reliable estimate of model performance, particularly given the small dataset size (126 observations).
 
 ## Models Evaluated
 1] Logistic Regression
@@ -49,108 +50,126 @@ We have features (delivery time lines, order accuracy, product availability, pri
 <br>6] Naive Bayes
 
 ### Model Comparison Summary
-Random Forest: Accuracy = 63.64%, ROC-AUC = 0.6198
-<br>KNN: Accuracy = 63.64%, ROC-AUC = 0.6529
-<br>SVM: Accuracy = 59.09%, ROC-AUC = 0.6529
-<br>Logistic Regression: Accuracy = 54.55%, ROC-AUC = 0.6446
-<br>Naive Bayes: Accuracy = 54.55%, ROC-AUC = 0.6364
-<br>XGBoost: Accuracy = 50.00%, ROC-AUC = 0.5620
+Random Forest: Accuracy = 73.07%, ROC-AUC = 0.7976
+<br>KNN: Accuracy = 61.53%, ROC-AUC = 0.5744
+<br>SVM: Accuracy = 61.53%, ROC-AUC =  0.7440
+<br>Logistic Regression: Accuracy = 61.53%, ROC-AUC = 0.7500
+<br>Naive Bayes: Accuracy = 61.53%, ROC-AUC = 0.76785
+<br>XGBoost: Accuracy = 61.53%, ROC-AUC = 0.7261
 
 > Random Forest and KNN have most accuracy followed by SVM and Logistic Regression.
 
 ### Overall Feature Ranking Across Models
-**delivery_timeliness** was ranked as the **most** important feature overall, with an average rank of 2.50.
-<br>**courier_service_rating** was the **second** most important feature, with an average rank of 2.83.
-<br>**product_availability** ranked **third** overall, with an average rank of 3.00.
-<br>**app_usability** was ranked **fourth**, with an average rank of 3.67.
-<br>**price_value_perception** ranked **fifth**, with an average rank of 3.83.
-<br>**order_accuracy** was the **least** important feature overall, with an average rank of 4.50.
+delivery_timeliness (Average Rank: 3.333333)
+<br>product_availability (Average Rank: 2.500000)
+<br>price_value_perception (Average Rank: 2.666667)
+<br>order_accuracy (Average Rank: 3.166667)
+<br>app_usability (Average Rank: 4.000000)
+<br>courier_service_rating (Average Rank: 3.000000)
+
+> delivery_timeliness and product_availability are the most important features across all models.
+> courier_service_rating is the least important feature.
 
 ## SHAP Feature Importance Analysis
 
 ### Most Important Feature by Model (SHAP Analysis):
-**Logistic Regression** identified **delivery_timeliness** as the most important feature (SHAP importance = 0.3901).
-<br>**Random Forest** identified **delivery_timeliness** as the most important feature (SHAP importance = 0.0921).
-<br>**KNN** identified **delivery_timeliness** as the most important feature (SHAP importance = 0.0668).
-<br>**SVM** identified **delivery_timeliness** as the most important feature (SHAP importance = 0.0001).
+Logistic Regression: delivery_timeliness (0.2715)
+<br>Random Forest: delivery_timeliness (0.1108)
+<br>KNN: order_accuracy (0.0412)
+<br>SVM: delivery_timeliness (0.0004)
+
+> delivery_timeliness was identified as the most important feature by 3 out of 4 models.
+<br>> order_accuracy was considered most important only by the KNN model.
 
 ### Least Important Feature by Model (SHAP Analysis):
-**Logistic Regression** identified **app_usability** as the least important feature (SHAP importance = 0.0015).
-<br>**Random Forest** identified **order_accuracy** as the least important feature (SHAP importance = 0.0307).
-<br>**KNN** identified **app_usability** as the least important feature (SHAP importance = 0.0294).
-<br>**SVM** identified **order_accuracy** as the least important feature (SHAP importance = 0.0000).
+Logistic Regression: price_value_perception (0.0046)
+<br>Random Forest: app_usability (0.0074)
+<br>KNN: delivery_timeliness (1.6931)
+<br>SVM: order_accuracy (0.0001)
 
-> All models indicate that delivery_timeliness is most important.
-<br>> Between the four models app_usability and order_accuracy are least important.
+> price_value_perception was the least influential feature or Logistic Regression.
+<br>> app_usability was the least influential feature for Random Forest.
+<br>> delivery_timeliness was the least influential feature for KNN.
+<br>> order_accuracy had the least impact in the SVM.
 
 ### Minimum Feature Set Achieving Maximum Accuracy
 Logistic Regression:
-- Accuracy: 59.09%
-- Features:
-  - delivery_timeliness
-  - product_availability
-  - price_value_perception
-  - courier_service_rating
+  - Accuracy: 0.6538461538461539
+  - Features:
+    - delivery_timeliness
+    - product_availability
+    - price_value_perception
 
 Random Forest:
-- Accuracy: 63.64%
-- Features:
-  - delivery_timeliness
-  - product_availability
-  - price_value_perception
-  - courier_service_rating
-  - app_usability
-  - order_accuracy
+  - Accuracy: 0.6538461538461539
+  - Features:  
+    - delivery_timeliness
+    - product_availability
+    - price_value_perception
+    - courier_service_rating
 
 KNN:
-- Accuracy: 63.64%
-- Features:
-  - delivery_timeliness
-  - product_availability
-  - price_value_perception
-  - courier_service_rating
-  - app_usability
-  - order_accuracy
+  - Accuracy: 0.6538461538461539
+  - Features:
+    - delivery_timeliness
+    - product_availability
 
 SVM:
-- Accuracy: 59.09%
-- Features:
-  - delivery_timeliness
-  - product_availability
+  - Accuracy: 0.6923076923076923
+  - Features:
+    - delivery_timeliness
+    - product_availability
+    - price_value_perception
+    - courier_service_rating
+    - app_usability
   
 ## Hyperparameter tuning the models.
-SVM achieved the highest cross-validation accuracy (56.73%).
-<br>Logistic Regression and Random Forest performed similarly (54.58%).
-<br>KNN achieved the lowest cross-validation accuracy (53.33%).
-
-> After hyperparameter tuning, the best accuracy achieved was 0.567320 with SVM model. The most important feature for SVM was found to be 'product_availability' and the least important feature was 'order_accuracy'. 
-
-> An accurracy of 73% or above was not achieved with any of the models evaluated. This could be because the target is extremely balanced and the dataset is small.
+SVM: Accuracy = 56%, Standard Deviation = 0.0734
+<br>Logistic Regression: Accuracy = 54%, Standard Deviation = 0.1157
+<br>Random Forest: Accuracy = 57%, Standard Deviation = 0.1029
+<br>KNN: Accuracy = 57%, Standard Deviation = 0.06
 
 ## Tune the models with the best hyperparameters for the minimum feature set to get best accuracy.
 
 ### Tuned SVM.
-<br>With best hyperparameters: {'C': 0.01, 'gamma': 'scale', 'kernel': 'linear'}
-<br>and minimum feature set ['delivery_timeliness', 'product_availability']
- - Accuracy: 0.5
- - ROC-AUC: 0.39256198347107435
+<br>With best hyperparameters: {'svm__C': 0.1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+<br>and minimum feature set ['delivery_timeliness',
+    'product_availability',
+    'price_value_perception',
+    'courier_service_rating',
+    'app_usability']
+<br> and ['delivery_timeliness', 
+'product_availability', 
+'price_value_perception', 
+'courier_service_rating', 
+'app_usability', 'order_accuracy']
+ - Accuracy: 0.7916666666666666
 
 ### Tuned Random Forest:
-<br>with best hyperparameters: {'max_depth': 2, 'min_samples_leaf': 4, 'n_estimators': 50}
-<br>and minimum feature set is all the features.
- - Accuracy: 0.5454545454545454
- - ROC-AUC: 0.6115702479338843
+<br>with best hyperparameters: {'rf__max_depth': 4, 'rf__min_samples_leaf': 1, 'rf__n_estimators': 50}
+<br>and minimum feature set is ['delivery_timeliness',
+    'product_availability',
+    'price_value_perception',
+    'courier_service_rating']
+<br> and ['delivery_timeliness', 
+    'product_availability', 
+    'price_value_perception', 
+    'courier_service_rating', 
+    'app_usability', 'order_accuracy'].
+ - Accuracy: 0.8214285714285714
 
 ### Tune Logistic Regression:
-<br>with best hyperparameters: {'C': 0.001, 'penalty': 'l2', 'solver': 'liblinear'}
-<br>and minimum feature set is ['delivery_timeliness', 'product_availability', 'price_value_perception', 'courier_service_rating'].
- - Accuracy: 0.5
- - ROC-AUC: 0.6652892561983471
+<br>with best hyperparameters: {'lr__C': 0.001, 'lr__penalty': 'l2', 'lr__solver': 'liblinear'}
+<br>and minimum feature set is ['delivery_timeliness',
+    'product_availability',
+    'price_value_perception'].
+ - Accuracy: 0.6538461538461539
 
 ### Tuned KNN:
-<br>with best hyperparameters: {'n_neighbors': 7, 'weights': 'uniform'}
-<br>and minimum feature set is all the features.
- - Accuracy: 0.6818181818181818
- - ROC-AUC: 0.7892561983471075
+<br>with best hyperparameters: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'knn__weights': 'distance'}
+<br>and minimum feature set ['delivery_timeliness',
+      'product_availability']
+<br> and ['delivery_timeliness', 'product_availability', 'price_value_perception'].
+ - Accuracy: 0.5476190476190476
 
 > After tuning the models with the hyperparameter and minimum feature set KNN can achive the accuracy of 68%.
