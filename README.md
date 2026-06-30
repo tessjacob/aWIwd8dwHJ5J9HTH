@@ -79,7 +79,7 @@ Logistic Regression: delivery_timeliness (0.2715)
 <br>SVM: delivery_timeliness (0.0004)
 
 > delivery_timeliness was identified as the most important feature by 3 out of 4 models.
-<br>> order_accuracy was considered most important only by the KNN model.
+<br> order_accuracy was considered most important only by the KNN model.
 
 ### Least Important Feature by Model (SHAP Analysis):
 Logistic Regression: price_value_perception (0.0046)
@@ -88,9 +88,9 @@ Logistic Regression: price_value_perception (0.0046)
 <br>SVM: order_accuracy (0.0001)
 
 > price_value_perception was the least influential feature or Logistic Regression.
-<br>> app_usability was the least influential feature for Random Forest.
-<br>> delivery_timeliness was the least influential feature for KNN.
-<br>> order_accuracy had the least impact in the SVM.
+<br> app_usability was the least influential feature for Random Forest.
+<br> delivery_timeliness was the least influential feature for KNN.
+<br> order_accuracy had the least impact in the SVM.
 
 ## Hyperparameter tuning the models with all possible combinations of feature subset to get best accuracy.
 Logistic Regression:
@@ -106,7 +106,7 @@ Logistic Regression:
                       'rf__min_samples_leaf': 1, 
                       'rf__n_estimators': 50}
   - Highest Accuracy: 0.7692307692307693
-
+<br>
   - Feature Set: ['delivery_timeliness', 'courier_service_rating']
   - Hyperparameters: {'rf__max_depth': 2, 
                       'rf__min_samples_leaf': 1, 
@@ -126,7 +126,7 @@ Logistic Regression:
                       'svm__gamma': 'scale', 
                       'svm__kernel': 'rbf'}
   - Highest Accuracy: 0.8076923076923077
-
+<br>
  - Feature Set: ['delivery_timeliness', 'product_availability', 'courier_service_rating', 'app_usability']
  - Hyperparameters: {'svm__C': 1, 
                      'svm__gamma': 'scale', 
@@ -136,6 +136,6 @@ Logistic Regression:
 
 ## Conclusion
 > 1] The prediction if customer is happy or unhappy can be done using **K-Nearest Neighbors (KNN) Classifier** at 84.61% accuracy.
-> 2] Most important fearture for predicting if customer is happy is 'delivery_timeliness'.
-> Minimun subset for predition is ['delivery_timeliness', 'product_availability', 'app_usability'].
+<br> 2] Most important fearture for predicting if customer is happy is 'delivery_timeliness'.
+<br> Minimun subset for predition is ['delivery_timeliness', 'product_availability', 'app_usability'].
 
