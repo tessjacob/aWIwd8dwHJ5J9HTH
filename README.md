@@ -101,17 +101,19 @@ Logistic Regression:
   - Highest Accuracy: 0.7692307692307693
 
 <br>Random Forest:
-  - Feature Set: ['delivery_timeliness']
-  - Hyperparameters: {'rf__max_depth': 2, 
-                      'rf__min_samples_leaf': 1, 
-                      'rf__n_estimators': 50}
-  - Highest Accuracy: 0.7692307692307693
-<br>
-  - Feature Set: ['delivery_timeliness', 'courier_service_rating']
-  - Hyperparameters: {'rf__max_depth': 2, 
-                      'rf__min_samples_leaf': 1, 
-                      'rf__n_estimators': 50}
-  - Highest Accuracy: 0.7692307692307693
+  - Option 1:
+    - Feature Set: ['delivery_timeliness']
+    - Hyperparameters: {'rf__max_depth': 2, 
+                        'rf__min_samples_leaf': 1, 
+                        'rf__n_estimators': 50}
+    - Highest Accuracy: 0.7692307692307693
+
+  - Option 2:
+    - Feature Set: ['delivery_timeliness', 'courier_service_rating']
+    - Hyperparameters: {'rf__max_depth': 2, 
+                        'rf__min_samples_leaf': 1, 
+                        'rf__n_estimators': 50}
+    - Highest Accuracy: 0.7692307692307693
 
 <br>KNN:
   - Feature Set: ['delivery_timeliness', 'product_availability', 'app_usability']
@@ -121,17 +123,19 @@ Logistic Regression:
   - Highest Accuracy: 0.8461538461538461
 
 <br>SVM:
-  - Feature Set: ['delivery_timeliness', 'product_availability']
-  - Hyperparameters: {'svm__C': 1, 
-                      'svm__gamma': 'scale', 
-                      'svm__kernel': 'rbf'}
-  - Highest Accuracy: 0.8076923076923077
-<br>
- - Feature Set: ['delivery_timeliness', 'product_availability', 'courier_service_rating', 'app_usability']
- - Hyperparameters: {'svm__C': 1, 
-                     'svm__gamma': 'scale', 
-                     'svm__kernel': 'rbf'}
- - Highest Accuracy: 0.8076923076923077
+  - Option 1:
+    - Feature Set: ['delivery_timeliness', 'product_availability']
+    - Hyperparameters: {'svm__C': 1, 
+                        'svm__gamma': 'scale', 
+                        'svm__kernel': 'rbf'}
+    - Highest Accuracy: 0.8076923076923077
+
+  - Option 2:
+    - Feature Set: ['delivery_timeliness', 'product_availability', 'courier_service_rating', 'app_usability']
+    - Hyperparameters: {'svm__C': 1, 
+                        'svm__gamma': 'scale', 
+                        'svm__kernel': 'rbf'}
+    - Highest Accuracy: 0.8076923076923077
 
 
 ## Conclusion
