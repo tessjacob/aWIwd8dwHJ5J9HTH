@@ -92,84 +92,50 @@ Logistic Regression: price_value_perception (0.0046)
 <br>> delivery_timeliness was the least influential feature for KNN.
 <br>> order_accuracy had the least impact in the SVM.
 
-### Minimum Feature Set Achieving Maximum Accuracy
+## Hyperparameter tuning the models with all possible combinations of feature subset to get best accuracy.
 Logistic Regression:
-  - Accuracy: 0.6538461538461539
-  - Features:
-    - delivery_timeliness
-    - product_availability
-    - price_value_perception
+  - Feature Set: ['delivery_timeliness']
+  - Hyperparameters: {'lr__C': 0.001, 
+                      'lr__penalty': 'l2', 
+                      'lr__solver': 'liblinear'}
+  - Highest Accuracy: 0.7692307692307693
 
-Random Forest:
-  - Accuracy: 0.6538461538461539
-  - Features:  
-    - delivery_timeliness
-    - product_availability
-    - price_value_perception
-    - courier_service_rating
+<br>Random Forest:
+  - Feature Set: ['delivery_timeliness']
+  - Hyperparameters: {'rf__max_depth': 2, 
+                      'rf__min_samples_leaf': 1, 
+                      'rf__n_estimators': 50}
+  - Highest Accuracy: 0.7692307692307693
 
-KNN:
-  - Accuracy: 0.6538461538461539
-  - Features:
-    - delivery_timeliness
-    - product_availability
+  - Feature Set: ['delivery_timeliness', 'courier_service_rating']
+  - Hyperparameters: {'rf__max_depth': 2, 
+                      'rf__min_samples_leaf': 1, 
+                      'rf__n_estimators': 50}
+  - Highest Accuracy: 0.7692307692307693
 
-SVM:
-  - Accuracy: 0.6923076923076923
-  - Features:
-    - delivery_timeliness
-    - product_availability
-    - price_value_perception
-    - courier_service_rating
-    - app_usability
-  
-## Hyperparameter tuning the models.
-SVM: Accuracy = 56%, Standard Deviation = 0.0734
-<br>Logistic Regression: Accuracy = 54%, Standard Deviation = 0.1157
-<br>Random Forest: Accuracy = 57%, Standard Deviation = 0.1029
-<br>KNN: Accuracy = 57%, Standard Deviation = 0.06
+<br>KNN:
+  - Feature Set: ['delivery_timeliness', 'product_availability', 'app_usability']
+  - Hyperparameters: {'knn__metric': 'manhattan', 
+                      'knn__n_neighbors': 5, 
+                      'knn__weights': 'uniform'}
+  - Highest Accuracy: 0.8461538461538461
 
-## Tune the models with the best hyperparameters for the minimum feature set to get best accuracy.
+<br>SVM:
+  - Feature Set: ['delivery_timeliness', 'product_availability']
+  - Hyperparameters: {'svm__C': 1, 
+                      'svm__gamma': 'scale', 
+                      'svm__kernel': 'rbf'}
+  - Highest Accuracy: 0.8076923076923077
 
-### Tuned SVM.
-<br>With best hyperparameters: {'svm__C': 0.1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
-<br>and minimum feature set ['delivery_timeliness',
-    'product_availability',
-    'price_value_perception',
-    'courier_service_rating',
-    'app_usability']
-<br> and ['delivery_timeliness', 
-'product_availability', 
-'price_value_perception', 
-'courier_service_rating', 
-'app_usability', 'order_accuracy']
- - Accuracy: 0.7916666666666666
+ - Feature Set: ['delivery_timeliness', 'product_availability', 'courier_service_rating', 'app_usability']
+ - Hyperparameters: {'svm__C': 1, 
+                     'svm__gamma': 'scale', 
+                     'svm__kernel': 'rbf'}
+ - Highest Accuracy: 0.8076923076923077
 
-### Tuned Random Forest:
-<br>with best hyperparameters: {'rf__max_depth': 4, 'rf__min_samples_leaf': 1, 'rf__n_estimators': 50}
-<br>and minimum feature set is ['delivery_timeliness',
-    'product_availability',
-    'price_value_perception',
-    'courier_service_rating']
-<br> and ['delivery_timeliness', 
-    'product_availability', 
-    'price_value_perception', 
-    'courier_service_rating', 
-    'app_usability', 'order_accuracy'].
- - Accuracy: 0.8214285714285714
 
-### Tune Logistic Regression:
-<br>with best hyperparameters: {'lr__C': 0.001, 'lr__penalty': 'l2', 'lr__solver': 'liblinear'}
-<br>and minimum feature set is ['delivery_timeliness',
-    'product_availability',
-    'price_value_perception'].
- - Accuracy: 0.6538461538461539
+## Conclusion
+> 1] The prediction if customer is happy or unhappy can be done using **K-Nearest Neighbors (KNN) Classifier** at 84.61% accuracy.
+> 2] Most important fearture for predicting if customer is happy is 'delivery_timeliness'.
+> Minimun subset for predition is ['delivery_timeliness', 'product_availability', 'app_usability'].
 
-### Tuned KNN:
-<br>with best hyperparameters: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'knn__weights': 'distance'}
-<br>and minimum feature set ['delivery_timeliness',
-      'product_availability']
-<br> and ['delivery_timeliness', 'product_availability', 'price_value_perception'].
- - Accuracy: 0.5476190476190476
-
-> After tuning the models with the hyperparameter and minimum feature set KNN can achive the accuracy of 68%.
